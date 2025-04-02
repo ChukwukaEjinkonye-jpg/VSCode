@@ -4,7 +4,7 @@ import calendar
 import re
 
 expenses = []
-budget = None
+budget = 1000
 
 def get_valid_month():
     while True:
@@ -84,17 +84,24 @@ def addExpense():
     expenses.append(expense)
  
 
-
-
-
 def viewExpense():
     #Iterate through 'expenses' array and display the date, category, amount, and description for each entry
     #Skip each entry that have any missing details and inform user which ones are incomplete afterwards
     print("lorem ipsum")
+    missing_details = []
+    for expense in expenses:
+        if any(not bool(value) for value in expense.values()):
+            missing_details.append(expense)
+        else:
+            date = expense['date'].split('-')
+            print(f"Date: {list(calendar.month_name)[int(date[1])]} {date[2]}, {date[0]} | Category: {expense['category']} | Amount: ${expense['amount']} | Description: {expense['expense']}")
+    if len(missing_details) > 0:
+        print("Some entries contain missing information")
 
-def setBudget():
-    #Allow for the user to input and set a monthly budget
-    print("lorem ipsum")
+
+def setBudget(value):
+    budget = value
+    print(f"Monthly budget is now set to: {budget}")
 
 def trackBudget():
     #Calculates the total expenses recorded so far 
@@ -111,3 +118,5 @@ def loadCSV():
     print("lorem ipsum")
 
 addExpense()
+
+
