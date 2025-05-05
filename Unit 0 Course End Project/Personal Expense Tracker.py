@@ -1,5 +1,4 @@
 #Libraries
-#Look into potential Python GUI libraries
 import calendar , csv , os , re
 import pandas as pd
 
